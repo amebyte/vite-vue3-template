@@ -9,3 +9,49 @@ Vite本身与框架无关，是一套基于插件的项目工程架构，是新�
 npm init @vitejs/app
 ```
 
+我选择的vue-ts默认配置
+
+将资源引入为URL
+
+服务时引入一个静态资源会返回解析后的公共路径：
+
+```javascript
+import logo  from "./assets/logo.png"
+```
+
+使用
+
+```javascript
+<img alt="logo" :src="logo" />
+```
+
+ 我们可以看到解析后的图片地址变成了一个绝对地址
+
+ ![](./md/01.png)'
+
+css背景里引用图片
+
+```css
+.logo {
+    background-image: url(./assets/logo.png);
+    width: 100px;
+    height: 100px;
+}
+```
+
+设置别名
+
+在vite.config文件里设置
+
+```javascript
+export default defineConfig({
+  resolve: {
+    alias: {
+        '@': resolve('./src'),
+        'comps': resolve('./src/components')
+    }
+  },
+  plugins: [vue()]
+})
+```
+
