@@ -1,41 +1,12 @@
 <template>
   <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a
-      href="https://marketplace.visualstudio.com/items?itemName=octref.vetur"
-      target="_blank"
-    >
-      Vetur
-    </a>
-    or
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    (if using
-    <code>&lt;script setup&gt;</code>)
-  </p>
-
-  <p>See <code>README.md</code> for more information.</p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Docs
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <ul>
+      <li v-for="item in courses" :key="item.id">{{item.name}}</li>
+  </ul>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, reactive, defineComponent, defineProps } from 'vue'
 export default defineComponent({
   name: 'HelloWorld',
   props: {
@@ -46,7 +17,15 @@ export default defineComponent({
   },
   setup: () => {
     const count = ref(0)
-    return { count }
+    type Course = {
+        id: number,
+        name: string
+    }
+    const courses = reactive<Course[]>([
+        {id: 1, name: 'name1'},
+        {id: 2, name: 'name2'}
+    ])
+    return { count, courses }
   }
 })
 </script>

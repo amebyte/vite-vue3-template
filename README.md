@@ -144,3 +144,13 @@ module.exports = {
 
  ![](./md/04.png)
 
+ts
+
+Vite原生就整合了ts，你并不需要进行太多的额外配置就可以使用了，可以在package.json里配置限制TypeScript的版本
+
+```javascript
+"devDependencies": {
+    "typescript": "^4.3.2",
+}
+```
+
