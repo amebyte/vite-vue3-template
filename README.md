@@ -55,3 +55,92 @@ export default defineConfig({
 })
 ```
 
+ ![](./md/02.png)
+
+全局样式
+
+可以在main.ts引入
+
+```javascript
+import { createApp } from 'vue'
+import App from './App.vue'
+import './index.css'
+createApp(App).mount('#app')
+```
+
+使用module模块化方式写css
+
+```css
+<style module>
+.logo {
+    background-image: url(@/assets/logo.png);
+    width: 200px;
+    height: 200px;
+}
+</style>
+```
+
+这样写了之后就会得到一个$style的变量
+
+```html
+<div :class="$style.logo"></div>
+```
+
+这样写的好处就是类名会进行hash变成唯一的类名
+
+ ![](./md/03.png)
+
+还可以使用约定的方式书写
+
+```javascript
+import styles from './App.module.css'
+```
+
+```html
+<div :class="styles.logo"></div>
+```
+
+项目规模变大之后，我们要组织更多样式的时候，我们通常会引入sass或less这样的样式处理器
+
+只需要安装一下sass就可以了，不需要额外配置，比如像webpack那样安装loader
+
+```
+npm i -D sass
+```
+
+```scss
+<style scoped lang="scss">
+$link-color: red;
+a {
+    color: $link-color
+}
+</style>
+```
+
+安装autoprefixer 
+
+```
+npm i autoprefixer -D
+```
+
+然后在根目录添加一个postcss.config.js的文件
+
+```javascript
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+  ]
+}
+```
+
+写一个
+
+```
+::placeholder{
+    color: $link-color
+}
+```
+自动加上了前缀
+
+ ![](./md/04.png)
+
