@@ -295,3 +295,65 @@ module.exports = {
 *vue.d.ts
 ```
 
+测试配置
+
+使用jest和@vue/test-utils测试组件
+
+安装依赖
+
+```
+"jest": "^26.6.3",
+"@types/jest": "^26.0.20",
+"vue-jest": "^5.0.0-alpha.7",
+"babel-jest": "^26.6.3",
+"@babel/preset-env": "^7.12.17",
+"@vue/test-utils": "^2.0.0-beta.9",
+"ts-jest": "^26.5.1",
+"@babel/preset-typescript": "^7.12.17",
+```
+
+配置jest.config.js文件
+
+```javascript
+module.exports = {
+  transform: {
+    //  用 `vue-jest` 处理 `*.vue` 文件
+    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.jsx?$': 'babel-jest', // Adding this line solved the issue
+    '^.+\\.tsx?$': 'ts-jest',
+  },
+  // support alias
+  moduleNameMapper: {
+    '^@/components(.*)$': '<rootDir>/src/components$1',
+  },
+  testMatch: ['**/tests/unit/**/*.[jt]s?(x)'],
+}
+```
+
+在tsconfig.json文件里配置jest
+
+```javascript
+"compilerOptions": {
+	"types": ["vite/client", "jest"],
+}
+```
+
+在package.json里配置运行命令
+
+```javascript
+"test:unit": "jest"
+```
+
+ts有可能存在一些比较前卫的语法，所以需要配置一下babel
+
+配置babel.config.js
+
+```javascript
+module.exports = {
+    presets: [
+      ["@babel/preset-env", { targets: { node: "current" } }],
+      "@babel/preset-typescript",
+    ],
+};
+```
+
