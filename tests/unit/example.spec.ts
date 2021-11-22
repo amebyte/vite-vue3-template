@@ -5,9 +5,9 @@ describe("test", () => {
   test("should ", () => {
     const wrapper = shallowMount(HelloWorld, {
       props: {
-        msg: "hello,vue3",
+        msg: "hello,coboy",
       },
     });
-    expect(wrapper.text()).toMatch("hello,vue3");
+    expect(wrapper.text()).toMatch("hello,coboy");
   });
 });

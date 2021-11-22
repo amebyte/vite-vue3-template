@@ -11,6 +11,8 @@ npm init @vitejs/app
 
 我选择的vue-ts默认配置
 
+### 资源引用
+
 将资源引入为URL
 
 服务时引入一个静态资源会返回解析后的公共路径：
@@ -39,7 +41,7 @@ css背景里引用图片
 }
 ```
 
-设置别名
+### 设置别名
 
 在vite.config文件里设置
 
@@ -57,7 +59,7 @@ export default defineConfig({
 
  ![](./md/02.png)
 
-全局样式
+### 全局样式
 
 可以在main.ts引入
 
@@ -67,6 +69,8 @@ import App from './App.vue'
 import './index.css'
 createApp(App).mount('#app')
 ```
+
+### css模块化
 
 使用module模块化方式写css
 
@@ -100,6 +104,8 @@ import styles from './App.module.css'
 <div :class="styles.logo"></div>
 ```
 
+### sass或less样式处理器
+
 项目规模变大之后，我们要组织更多样式的时候，我们通常会引入sass或less这样的样式处理器
 
 只需要安装一下sass就可以了，不需要额外配置，比如像webpack那样安装loader
@@ -116,6 +122,8 @@ a {
 }
 </style>
 ```
+
+### autoprefixer 配置
 
 安装autoprefixer 
 
@@ -144,7 +152,7 @@ module.exports = {
 
  ![](./md/04.png)
 
-ts
+### ts配置
 
 Vite原生就整合了ts，你并不需要进行太多的额外配置就可以使用了，可以在package.json里配置限制TypeScript的版本
 
@@ -154,7 +162,7 @@ Vite原生就整合了ts，你并不需要进行太多的额外配置就可以�
 }
 ```
 
-配置代理服务器
+### 配置代理服务器
 
 在根目录vite.config文件进行如下配置就可以了
 
@@ -172,7 +180,7 @@ export default defineConfig({
 })
 ```
 
-数据mock
+### 数据mock
 
 安装依赖
 
@@ -221,7 +229,7 @@ fetch("/api-dev/user/list").then(res => res.json()).then(r=> console.log(r))
 
  ![](./md/06.png)
 
-代码规范
+### 代码规范
 
 使用eslint + prettier 规范项目代码，eslint做规范化的检测，prettier做格式化的操作
 
@@ -295,7 +303,7 @@ module.exports = {
 *vue.d.ts
 ```
 
-测试配置
+### 测试配置
 
 使用jest和@vue/test-utils测试组件
 
@@ -375,6 +383,34 @@ module.exports = {
     "*.{js,vue}": "eslint --fix"
 },
 ```
+
+在根目录配置一个测试文件
+
+tests/unit/example.spec.ts
+
+```javascript
+import HelloWorld from "../../src/components/HelloWorld.vue";
+import { shallowMount } from "@vue/test-utils";
+
+describe("test", () => {
+  test("should ", () => {
+    const wrapper = shallowMount(HelloWorld, {
+      props: {
+        msg: "hello,coboy",
+      },
+    });
+    expect(wrapper.text()).toMatch("hello,coboy");
+  });
+});
+```
+
+
+
+执行git push的时候出现如下结果表示配置成功
+
+ ![](./md/07.png)
+
+
 
 `Error Unexpected trailing comma. comma-dangle`错误Eslint代码检测report数据 
 
