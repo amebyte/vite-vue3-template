@@ -3,6 +3,32 @@
 
 Vite本身与框架无关，是一套基于插件的项目工程架构，是新的一套对开发者比较友好的一套构建和开发的工具，它的特点就是快，它不会随着项目的规模的变大而让你的开发过程变得卡顿。总的来说就是：Vite是一个开发构建工具，开发过程中它利用浏览器的native ES Module特性按需导入源码，预打包依赖。是为了开发者量身定做的一套开发工具。特点：启动快，更新快。
 
+### Vite工作原理
+
+我们观察Vite工程项目的结构发现在根目录出现了一个index.html文件，这个文件有点相当于我们之前的webpack工程项目里html模版入口文件。其中最大的变化就是script标签引用是用ES6的原生模块化`type="module"`进行引用，即是esmodule。
+
+```html
+<script type="module" src="/src/main.ts"></script>
+```
+
+也就是说在你的项目里面你可以使用ES6方式进行写代码，将来浏览器会把你import的文件再用http方式向服务器进行请求。如下图：
+
+ ![](./md/09.png)
+
+在main.js里面import了vue.js，App.vue，index.css三个文件，后续都进行http请求相关文件内容。
+
+我们再观察App.vue请求回来的内容：
+
+ ![](./md/091.png)
+
+已经是进行了解析之后的内容。
+
+我们再观察到App.vue请求响应是`Content-Type: application/javascript`
+
+ ![](./md/092.png)
+
+也就是说App.vue文件不再是我们写的那个vue文件，而且一个经过vite服务器解析之后的可以被浏览器执行的js文件。
+
 安装
 
 ```javascript
