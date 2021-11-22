@@ -18,6 +18,7 @@ export default defineComponent({
     HelloWorld
   },
   setup() {
+      fetch("/api-dev/user/list").then(res => res.json()).then(r=> console.log(r))
       return {
           logo
       }

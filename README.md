@@ -154,3 +154,70 @@ Vite原生就整合了ts，你并不需要进行太多的额外配置就可以�
 }
 ```
 
+配置代理服务器
+
+在根目录vite.config文件进行如下配置就可以了
+
+```javascript
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://www.baidu.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
+})
+```
+
+数据mock
+
+安装依赖
+
+```
+npm i mockjs -S // 运行时依赖所以-S
+npm i vite-plugin-mock -D
+```
+
+在根目录的vite.config文件还需要进行如下的配置
+
+```javascript
+import {viteMockServe} from 'vite-plugin-mock'
+export default defineConfig({
+	plugins: [viteMockServe({})],
+})
+```
+
+在根目录下新建一个mock文件
+
+ ![](./md/05.png)
+
+写上一个模拟接口
+
+```javascript
+export default [
+  {
+    url: "/api-dev/user/list",
+    method: "get",
+    response: req => {
+      return {
+        code: 0,
+        data: [{ id: 1, name: "coboy" }, { id: 2, name: "cobyte" }],
+      };
+    },
+  }
+];
+```
+
+再写上一个请求
+
+```javascript
+fetch("/api-dev/user/list").then(res => res.json()).then(r=> console.log(r))
+```
+
+书写配置正确就可以在控制台看到打印的数据了。
+
+ ![](./md/06.png)
+
