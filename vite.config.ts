@@ -10,15 +10,15 @@ export default defineConfig({
       '/api': {
         target: 'http://www.baidu.com/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   resolve: {
     alias: {
       '@': resolve('./src'),
-      comps: resolve('./src/components'),
-    },
+      comps: resolve('./src/components')
+    }
   },
-  plugins: [vue(), viteMockServe({})],
+  plugins: [vue(), viteMockServe({})]
 })

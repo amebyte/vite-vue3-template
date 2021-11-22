@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive, defineComponent, defineProps } from 'vue'
+import { ref, reactive, defineComponent, defineProps } from "vue";
 export default defineComponent({
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: {
       type: String,
@@ -16,18 +16,18 @@ export default defineComponent({
     },
   },
   setup: () => {
-    const count = ref(0)
+    const count = ref(0);
     type Course = {
-      id: number
-      name: string
-    }
+      id: number;
+      name: string;
+    };
     const courses = reactive<Course[]>([
-      { id: 1, name: 'name1' },
-      { id: 2, name: 'name2' },
-    ])
-    return { count, courses }
+      { id: 1, name: "name1" },
+      { id: 2, name: "name2" },
+    ]);
+    return { count, courses };
   },
-})
+});
 </script>
 
 <style scoped>

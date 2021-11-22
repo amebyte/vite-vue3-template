@@ -357,3 +357,29 @@ module.exports = {
 };
 ```
 
+提交的时候跑lint同时跑测试
+
+安装依赖
+
+```
+"lint-staged": "^10.5.4",
+"yorkie": "^2.0.0"
+```
+
+```javascript
+"gitHooks": {
+    "pre-commit": "lint-staged",
+    "pre-push": "npm run test:unit"
+},
+"lint-staged": {
+    "*.{js,vue}": "eslint --fix"
+},
+```
+
+`Error Unexpected trailing comma. comma-dangle`错误Eslint代码检测report数据 
+
+vs code的“文件-首选项-设置”，搜索“comma”，把：
+
+> Prettier: Trailing Comma
+
+设置为“none”。 
