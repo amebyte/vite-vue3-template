@@ -404,7 +404,9 @@ describe("test", () => {
 });
 ```
 
+执行git commit -m "xxx"时候出现如下结果表示配置成功
 
+ ![](./md/08.png)
 
 执行git push的时候出现如下结果表示配置成功
 
