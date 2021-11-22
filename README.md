@@ -221,3 +221,77 @@ fetch("/api-dev/user/list").then(res => res.json()).then(r=> console.log(r))
 
  ![](./md/06.png)
 
+代码规范
+
+使用eslint + prettier 规范项目代码，eslint做规范化的检测，prettier做格式化的操作
+
+安装依赖
+
+```javascript
+{
+  "@typescript-eslint/eslint-plugin": "^4.15.2",
+  "@typescript-eslint/parser": "^4.15.2",
+  "@vue/eslint-config-prettier": "^6.0.0",
+  "@vue/eslint-config-typescript": "^7.0.0",
+  "@vuedx/typescript-plugin-vue": "^0.6.3",
+  "eslint": "^7.20.0",
+  "eslint-plugin-prettier": "^3.3.1",
+  "eslint-plugin-vue": "^7.6.0",
+  "prettier": "^2.2.1",
+}
+```
+
+eslint通过eslint-plugin-vue插件对.vue文件进行校验
+
+配置.eslintrc.js文件
+
+```javascript
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
+  },
+  extends: [
+    'plugin:vue/vue3-recommended',
+    'eslint:recommended',
+    '@vue/typescript/recommended',
+    '@vue/prettier',
+    '@vue/prettier/@typescript-eslint'
+  ],
+  parserOptions: {
+    ecmaVersion: 2021
+  },
+  plugins: [],
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off'
+  }
+}
+```
+
+配置package包检测命令
+
+```
+"lint": "eslint --ext .ts,tsx,vue src/** --no-error-on-unmatched-pattern --quiet",
+"lint:fix": "eslint --ext .ts,tsx,vue src/** --no-error-on-unmatched-pattern --fix"
+```
+
+--quiet 不显示警告
+
+--fix 自动修复
+
+配置忽略检查的文件.eslintignore
+
+```
+*.css
+*.less
+*.scss
+*.jpg
+*.png
+*.gif
+*.svg
+*vue.d.ts
+```
+
