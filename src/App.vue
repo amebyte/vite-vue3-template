@@ -1,4 +1,5 @@
 <template>
+  <el-icon><Plus /></el-icon>
   <img alt="Vue logo" :src="logo" />
   <div :class="$style.logo"></div>
   <a href="###">cobyte</a>
