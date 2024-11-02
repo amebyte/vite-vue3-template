@@ -6,6 +6,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
+    hmr: true,
     proxy: {
       '/api': {
         target: 'http://www.baidu.com/',

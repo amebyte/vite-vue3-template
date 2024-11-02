@@ -16,6 +16,7 @@
     "*.{ts,tsx,js,vue}": "eslint --fix"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.2.21",
     "mockjs": "^1.1.0",
     "vue": "^3.0.5"
